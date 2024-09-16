@@ -59,3 +59,12 @@ const Timer: React.FC<TimerProps> = ({ title, minutes, onComplete }) => {
           className="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-full mx-2"
           onClick={() => { setIsActive(false); setTime(minutes * 60); }}
         >
+
+<FaStop />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Timer;
