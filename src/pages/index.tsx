@@ -29,3 +29,4 @@ const Home = () => {
         }
         return newCount;
       });
+    };
