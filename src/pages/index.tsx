@@ -9,4 +9,9 @@ const Home = () => {
     const startPomodoro = () => {
       setActiveTimer('pomodoro');
     };
+
+    const startShortBreak = () => {
+      setActiveTimer('short');
+    };
+  
   
