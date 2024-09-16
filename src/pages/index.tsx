@@ -30,3 +30,5 @@ const Home = () => {
         return newCount;
       });
     };
+
+    const handleBreakComplete = () => {
