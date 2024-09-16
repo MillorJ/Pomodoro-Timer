@@ -75,3 +75,11 @@ Start Pomodoro
           </div>
         )}
       </div>
+
+      <div className="w-full max-w-md">
+        <textarea
+          className="w-full p-4 border border-gray-300 rounded-lg mb-4"
+          placeholder="Enter your tasks here..."
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+        />
