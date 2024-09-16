@@ -28,3 +28,4 @@ const Home = () => {
           setTimeout(() => startShortBreak(), 100);
         }
         return newCount;
+      });
