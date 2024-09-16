@@ -46,3 +46,14 @@ const Home = () => {
         {activeTimer === 'short' && (
           <Timer title="Short Break" minutes={5} onComplete={handleBreakComplete} />
         )}
+
+)}
+        {activeTimer === 'long' && (
+          <Timer title="Long Break" minutes={15} onComplete={handleBreakComplete} />
+        )}
+        {activeTimer === null && (
+          <div className="text-center">
+            <button
+              className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md mr-2"
+              onClick={startPomodoro}
+            >
