@@ -38,3 +38,7 @@ const Home = () => {
     return (
       <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
         <h1 className="text-4xl font-bold mb-6">Pomodoro Timer</h1>
+
+        <div className="flex flex-col items-center gap-4 mb-6">
+        {activeTimer === 'pomodoro' && (
+          <Timer title="Pomodoro" minutes={25} onComplete={handlePomodoroComplete} />
