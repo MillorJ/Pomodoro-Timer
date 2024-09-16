@@ -17,4 +17,6 @@ const Home = () => {
     const startLongBreak = () => {
       setActiveTimer('long');
     };
+
+    const handlePomodoroComplete = () => {
   
