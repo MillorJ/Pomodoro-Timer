@@ -27,4 +27,4 @@ const Home = () => {
         } else {
           setTimeout(() => startShortBreak(), 100);
         }
-    
+        return newCount;
