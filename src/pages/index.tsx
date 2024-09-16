@@ -22,4 +22,5 @@ const Home = () => {
       setActiveTimer(null);
       setPomodoroCount((prevCount) => {
         const newCount = prevCount + 1;
+        if (newCount % 4 === 0) {
   
