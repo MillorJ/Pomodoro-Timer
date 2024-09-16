@@ -42,3 +42,7 @@ const Home = () => {
         <div className="flex flex-col items-center gap-4 mb-6">
         {activeTimer === 'pomodoro' && (
           <Timer title="Pomodoro" minutes={25} onComplete={handlePomodoroComplete} />
+        )}
+        {activeTimer === 'short' && (
+          <Timer title="Short Break" minutes={5} onComplete={handleBreakComplete} />
+        )}
