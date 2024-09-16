@@ -36,3 +36,19 @@ const Timer: React.FC<TimerProps> = ({ title, minutes, onComplete }) => {
     const seconds = time % 60;
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   };
+
+  return (
+    <div className="p-6 bg-white shadow-lg rounded-lg text-center w-full max-w-xs">
+      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+      <div className="text-4xl mb-4">{formatTime(time)}</div>
+      <div>
+        <button
+          className="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded-full mx-2"
+          onClick={() => { setIsActive(true); setIsPaused(false); }}
+        >
+          <FaPlay />
+        </button>
+        <button
+          className="px-4 py-2 bg-yellow-500 hover:bg-yellow-700 text-white rounded-full mx-2"
+          onClick={() => { setIsPaused(!isPaused); }}
+        ></button>
