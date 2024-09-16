@@ -14,4 +14,7 @@ const Home = () => {
       setActiveTimer('short');
     };
   
+    const startLongBreak = () => {
+      setActiveTimer('long');
+    };
   
