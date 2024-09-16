@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// components/Timer.tsx
+import { useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaStop } from 'react-icons/fa';
 
 interface TimerProps {
