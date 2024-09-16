@@ -83,3 +83,16 @@ Start Pomodoro
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
+
+<button
+          className="w-full p-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg"
+          onClick={() => setTask('')}
+        >
+          Save Task
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
