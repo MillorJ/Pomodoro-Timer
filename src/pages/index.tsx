@@ -57,3 +57,21 @@ const Home = () => {
               className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md mr-2"
               onClick={startPomodoro}
             >
+
+Start Pomodoro
+            </button>
+            <button
+              className="px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md mx-2"
+              onClick={startShortBreak}
+            >
+              Start Short Break
+            </button>
+            <button
+              className="px-4 py-2 bg-yellow-500 hover:bg-yellow-700 text-white font-semibold rounded-lg shadow-md ml-2"
+              onClick={startLongBreak}
+            >
+              Start Long Break
+            </button>
+          </div>
+        )}
+      </div>
