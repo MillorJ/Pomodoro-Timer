@@ -21,4 +21,5 @@ const Home = () => {
     const handlePomodoroComplete = () => {
       setActiveTimer(null);
       setPomodoroCount((prevCount) => {
+        const newCount = prevCount + 1;
   
