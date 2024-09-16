@@ -23,4 +23,8 @@ const Home = () => {
       setPomodoroCount((prevCount) => {
         const newCount = prevCount + 1;
         if (newCount % 4 === 0) {
-  
+          setTimeout(() => startLongBreak(), 100);
+        } else {
+          setTimeout(() => startShortBreak(), 100);
+        }
+    
