@@ -32,3 +32,4 @@ const Home = () => {
     };
 
     const handleBreakComplete = () => {
+      startPomodoro();
