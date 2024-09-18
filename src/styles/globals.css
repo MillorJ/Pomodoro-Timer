@@ -25,3 +25,20 @@ body {
     text-wrap: balance;
   }
 }
+
+/* globals.css */
+
+/* Ensure your existing styles are preserved and then add these new styles */
+
+.footer {
+  position: relative;
+  padding: 1rem;
+  text-align: center;
+  background: #333;
+}
+
+.footer h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff, 0 0 30px #ff00ff, 0 0 35px #ff00ff;
+}

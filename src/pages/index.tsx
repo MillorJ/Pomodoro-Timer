@@ -1,6 +1,7 @@
 // src/pages/index.tsx
 import { useState } from 'react';
 import Timer from '../../components/Timer';
+import Footer from '../../components/Footer';
 
 const Home = () => {
   const [isPomodoroActive, setIsPomodoroActive] = useState(false);
@@ -67,9 +68,9 @@ const Home = () => {
   const duration = timerDurations[currentTimer];
 
   const renderTimerOptions = () => (
-    <div className="bg-gray-800 p-4 rounded-md shadow-lg">
+    <div className="bg-gray-800 p-4 rounded-md shadow-lg text-center">
       <h2 className="text-2xl font-bold mb-4">Choose Timer</h2>
-      <div className="flex space-x-4 mb-4">
+      <div className="flex justify-center space-x-4 mb-4">
         <button
           onClick={() => { setCurrentTimer('pomodoro'); setIsPomodoroActive(true); }}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -93,7 +94,7 @@ const Home = () => {
   );
 
   const renderTimerScreen = () => (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center text-center">
       <Timer duration={duration} onFinish={handleFinish} />
       <button
         onClick={() => setIsPomodoroActive(false)}
@@ -138,49 +139,52 @@ const Home = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4">
-      <h1 className="text-4xl font-bold mb-6">Pomodoro Timer</h1>
-      {isPomodoroActive ? renderTimerScreen() : renderTimerOptions()}
-      {!isPomodoroActive && (
-        <div className="mt-8">
-          <input
-            type="text"
-            value={taskText}
-            onChange={(e) => setTaskText(e.target.value)}
-            className="bg-gray-700 text-white p-2 rounded"
-            placeholder="Add or edit task..."
-          />
-          <button
-            onClick={addTask}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
-          >
-            {editTaskId ? 'Update Task' : 'Add Task'}
-          </button>
-        </div>
-      )}
-      {!isPomodoroActive && (
-        <ul className="mt-4">
-          {tasks.map(task => (
-            <li key={task.id} className="bg-gray-800 p-2 rounded mb-2 flex justify-between items-center">
-              {task.text}
-              <div>
-                <button
-                  onClick={() => editTask(task.id)}
-                  className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mr-2"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => deleteTask(task.id)}
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white p-4">
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold mb-6">Pomodoro Timer</h1>
+        {isPomodoroActive ? renderTimerScreen() : renderTimerOptions()}
+        {!isPomodoroActive && (
+          <div className="mt-8 text-center">
+            <input
+              type="text"
+              value={taskText}
+              onChange={(e) => setTaskText(e.target.value)}
+              className="bg-gray-700 text-white p-2 rounded"
+              placeholder="Add or edit task..."
+            />
+            <button
+              onClick={addTask}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
+            >
+              {editTaskId ? 'Update Task' : 'Add Task'}
+            </button>
+          </div>
+        )}
+        {!isPomodoroActive && (
+          <ul className="mt-4 text-center">
+            {tasks.map(task => (
+              <li key={task.id} className="bg-gray-800 p-2 rounded mb-2 flex justify-between items-center mx-auto max-w-md">
+                {task.text}
+                <div>
+                  <button
+                    onClick={() => editTask(task.id)}
+                    className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mr-2"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => deleteTask(task.id)}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <Footer /> {/* Include the Footer component here */}
     </div>
   );
 };
