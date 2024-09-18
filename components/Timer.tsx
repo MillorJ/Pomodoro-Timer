@@ -1,66 +1,69 @@
-import { useState, useEffect } from 'react';
-import { FaPlay, FaPause, FaStop } from 'react-icons/fa';
+// src/components/Timer.tsx
+import React, { useState, useEffect } from 'react';
 
 interface TimerProps {
-  title: string;
-  minutes: number;
-  onComplete: () => void;
+  duration: number; // Duration in seconds
+  onFinish: () => void;
 }
 
-const Timer: React.FC<TimerProps> = ({ title, minutes, onComplete }) => {
-  const [time, setTime] = useState(minutes * 60);
+const Timer: React.FC<TimerProps> = ({ duration, onFinish }) => {
+  const [timeLeft, setTimeLeft] = useState(duration);
   const [isActive, setIsActive] = useState(false);
-  const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isActive && !isPaused) {
-      timer = setInterval(() => {
-        setTime((prevTime) => {
-          if (prevTime === 1) {
-            onComplete();
-            return 0;
-          }
-          return prevTime - 1;
-        });
-      }, 1000);
-    } else if (isPaused || !isActive) {
-      clearInterval(timer);
+    let timerId: NodeJS.Timeout | undefined;
+    if (isActive && timeLeft > 0) {
+      timerId = setInterval(() => setTimeLeft(prevTime => prevTime - 1), 1000);
+    } else if (timeLeft === 0) {
+      onFinish();
+      setIsActive(false);
     }
+    return () => {
+      if (timerId) clearInterval(timerId);
+    };
+  }, [isActive, timeLeft, onFinish]);
 
-    return () => clearInterval(timer);
-  }, [isActive, isPaused]);
+  useEffect(() => {
+    if (timeLeft === 0) {
+      const audio = new Audio('/alarm.mp3'); // Ensure you have an alarm sound at public/alarm.mp3
+      audio.play();
+    }
+  }, [timeLeft]);
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  const startTimer = () => {
+    setIsActive(true);
+  };
+
+  const pauseTimer = () => {
+    setIsActive(false);
+  };
+
+  const resetTimer = () => {
+    setIsActive(false);
+    setTimeLeft(duration);
   };
 
   return (
-    <div className="p-6 bg-white shadow-lg rounded-lg text-center w-full max-w-xs">
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
-      <div className="text-4xl mb-4">{formatTime(time)}</div>
-      <div>
+    <div className="p-4 bg-gray-800 text-white rounded-md shadow-lg">
+      <h2 className="text-xl font-bold mb-2">Time Left: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</h2>
+      <div className="flex space-x-2">
         <button
-          className="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded-full mx-2"
-          onClick={() => { setIsActive(true); setIsPaused(false); }}
+          onClick={startTimer}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          <FaPlay />
+          Start
         </button>
         <button
-          className="px-4 py-2 bg-yellow-500 hover:bg-yellow-700 text-white rounded-full mx-2"
-          onClick={() => { setIsPaused(!isPaused); }}
-        ></button>
-
-{isPaused ? <FaPlay /> : <FaPause />}
+          onClick={pauseTimer}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Pause
         </button>
         <button
-          className="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-full mx-2"
-          onClick={() => { setIsActive(false); setTime(minutes * 60); }}
+          onClick={resetTimer}
+          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
         >
-
-<FaStop />
+          Reset
         </button>
       </div>
     </div>
