@@ -41,3 +41,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 - To be updated soon, if the time will end. it will ring
+- U can use this if you want to study and use Pomodoro Technique
